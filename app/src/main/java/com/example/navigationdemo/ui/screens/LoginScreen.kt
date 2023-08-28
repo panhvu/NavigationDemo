@@ -22,9 +22,12 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    name: String?,
+    onClick: (String) -> Unit,
+) {
     var text by remember {
-        mutableStateOf("")
+        mutableStateOf(name ?: "")
     }
     Column(
         verticalArrangement = Arrangement.Center,
@@ -39,7 +42,7 @@ fun LoginScreen() {
         )
         Spacer(modifier = Modifier.height(8.dp))
         Button(
-            onClick = { /* TODO */ },
+            onClick = { onClick(text) },
             modifier = Modifier.align(Alignment.End)
         ) {
             Text(text = "login")
@@ -50,5 +53,5 @@ fun LoginScreen() {
 @Preview
 @Composable
 fun LoginPreview() {
-    LoginScreen()
+    LoginScreen("Martin", {})
 }

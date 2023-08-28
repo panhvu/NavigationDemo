@@ -15,7 +15,11 @@ import androidx.compose.ui.unit.dp
 
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    name: String?,
+    onChangeName: (String?) -> Unit,
+    onEnter: () -> Unit,
+) {
     Column(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -24,7 +28,7 @@ fun WelcomeScreen() {
             .padding(horizontal = 50.dp)
     ) {
         Text(
-            text = "Hello world",
+            text = "Hello $name",
             modifier = Modifier.padding(16.dp)
         )
         Row(
@@ -33,12 +37,12 @@ fun WelcomeScreen() {
             modifier = Modifier.fillMaxWidth()
         ) {
             Button(
-                onClick = { /* TODO */ },
+                onClick = { onChangeName(name) },
             ) {
                 Text(text = "change name")
             }
             Button(
-                onClick = { /* TODO */ },
+                onClick = { onEnter() },
             ) {
                 Text(text = "enter")
             }
@@ -49,5 +53,5 @@ fun WelcomeScreen() {
 @Preview(name = "Light Mode", showBackground = true)
 @Composable
 fun WelcomePreview() {
-    WelcomeScreen()
+    WelcomeScreen("Anna", {}, {})
 }
